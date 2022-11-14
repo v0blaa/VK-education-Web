@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings</title>
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">AskPumpkin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 navbar-search" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <button class="btn btn-success ask-button" type="button">ASK!</button>
+            </div>
+            <a class="name-link" href="#" target="_blank">Nastya Ishenko</a>
+            <div class="user-info-block">
+                <div class="navbar-avatar">
+                    <img src="../static/img/avatar-1.jpg" alt="" />
+                </div>
+            </div>
+            <div class="user-info-block">
+                <a class="navbar-account-link" href="#" target="_blank">settings</a>
+            </div>
+            <div class="user-info-block">
+                <a class="navbar-account-link" href="#" target="_blank">log out</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="flex-shrink-0">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <h1>Settings</h1>
+                <p>Sorry, this email address already exist</p>
+                <form action="new_questions.html" method=post oninput='second.setCustomValidity(first.value != second.value ? "Passwords do not match." : "")'>
+                    <div class="mb-3 row">
+                        <label class="col-2 col-form-label" for="title-text-input">Login</label>
+                        <div class="col-10">
+                            <input id="title-text-input" type="text" class="form-control default-data-field" placeholder="Enter your login here">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-2 col-form-label" for="email-text-input">Email</label>
+                        <div class="col-10">
+                            <input id="email-text-input" type="email" class="form-control default-data-field" placeholder="Enter your email here" required name="email">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-2 col-form-label" for="nickname-text-input">Nickname</label>
+                        <div class="col-10">
+                            <input id="nickname-text-input" type="text" class="form-control default-data-field" required name="nickName" placeholder="Enter your nickname here">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="mb-3 row">
+                            <label for="form-file" class="col-2 col-form-label">Upload avatar</label>
+                            <div class="col-10 settings-preview-avatar">
+                                <img src="../static/img/avatar-1.jpg">
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <input class="form-control default-data-field settings-avatar-file-selector" type="file" id="form-file">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success save-button">Save</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <h1>Popular Tags</h1>
+                <div class="popular-tags">
+                    <a class="usual-tag" href="#" target="_blank">Swift</a>
+                    <a class="red-tag" href="#" target="_blank">UIKit</a>
+                    <a class="usual-tag" href="#" target="_blank">VK Education</a>
+                    <a class="usual-tag" href="#" target="_blank">Kazahstan bilety</a>
+                    <a class="green-tag" href="#" target="_blank">Cats</a>
+                    <a class="usual-tag" href="#" target="_blank">Dogs</a>
+                    <a class="red-tag" href="#" target="_blank">Memes</a>
+                </div>
+                <h1>Best Members</h1>
+                <div class="best-member-link">
+                    <a href="#">Juicy Maffin</a>
+                    <a href="#">Angry Guy</a>
+                    <a href="#">BMSTU studsovet</a>
+                    <a href="#">Cat228</a>
+                    <a href="#">Gon</a>
+                    <a href="#">Killya</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

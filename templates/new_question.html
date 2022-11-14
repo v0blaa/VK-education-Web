@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Question</title>
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">AskPumpkin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 navbar-search" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <button class="btn btn-success ask-button" type="button">ASK!</button>
+            </div>
+            <a class="name-link" href="#" target="_blank">Nastya Ishenko</a>
+            <div class="user-info-block">
+                <div class="navbar-avatar">
+                    <img src="../static/img/avatar-1.jpg" alt="" />
+                </div>
+            </div>
+            <div class="user-info-block">
+                <a class="navbar-account-link" href="#" target="_blank">settings</a>
+            </div>
+            <div class="user-info-block">
+                <a class="navbar-account-link" href="#" target="_blank">log out</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8 form-container">
+                <h1>New Question</h1>
+                <form>
+                    <div class="mb-3 form-field">
+                        <label class="form-label" for="typeText">Title</label>
+                        <input id="title-text-input" type="text" class="form-control form-input">
+                    </div>
+                    <div class="mb-3 form-field">
+                        <label class="form-label" for="textAreaExample">Message</label>
+                        <textarea class="form-control form-field" id="textAreaExample" rows="10"></textarea>
+                    </div>
+                    <div class="mb-3 form-field">
+                        <label class="form-label" for="typeText">Tags</label>
+                        <input id="tags-text-input" type="text" class="form-control form-field"">
+                    </div>
+                    <button type="submit" class="btn btn-outline-success confirm-ask-button">ASK!</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <h1>Popular Tags</h1>
+                <div class="popular-tags">
+                    <a class="usual-tag" href="#" target="_blank">Swift</a>
+                    <a class="red-tag" href="#" target="_blank">UIKit</a>
+                    <a class="usual-tag" href="#" target="_blank">VK Education</a>
+                    <a class="usual-tag" href="#" target="_blank">Kazahstan bilety</a>
+                    <a class="green-tag" href="#" target="_blank">Cats</a>
+                    <a class="usual-tag" href="#" target="_blank">Dogs</a>
+                    <a class="red-tag" href="#" target="_blank">Memes</a>
+                </div>
+                <h1>Best Members</h1>
+                <div class="best-member-link">
+                    <a href="#">Juicy Maffin</a>
+                    <a href="#">Angry Guy</a>
+                    <a href="#">BMSTU studsovet</a>
+                    <a href="#">Cat228</a>
+                    <a href="#">Gon</a>
+                    <a href="#">Killya</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
