@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>New questions</h1>
-    <a class="hot-questions-link" href="#">Hot Questions</a>
+    <a class="hot-questions-link" href="{% url 'hot_questions' %}">Hot Questions</a>
 
 {% for question in questions %}
     {% include 'inc/question_item.html' %}

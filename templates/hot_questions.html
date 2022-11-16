@@ -1,0 +1,15 @@
+{% extends 'inc/base.html' %}
+
+{%  load static %}
+
+{% block content %}
+<h1>Hot Questions</h1>
+    <a class="hot-questions-link" href="{% url 'new_questions' %}">New questions</a>
+
+{% for question in questions %}
+    {% include 'inc/question_item.html' %}
+{% endfor %}
+
+{% include "inc/paginator.html" with page=questions %}
+
+{% endblock %}

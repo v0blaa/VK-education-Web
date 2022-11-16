@@ -2,8 +2,8 @@ from django.core.management import BaseCommand
 from django.db import IntegrityError
 from faker import Faker
 
-from management.commands.logger import make_logger
-from models import Profile
+from Askme_app.management.commands.logger import make_logger
+from Askme_app.models import Profile
 
 fake = Faker()
 
@@ -24,16 +24,16 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         logger = make_logger(options['debug'])
-        fake = Faker()
+        faker = Faker()
         logger.info('Generating {} users...'.format(options['users']))
         total_users = options['users']
         i = 0
         while i < total_users:
             try:
-                username = fake.user_name()
+                username = faker.user_name()
                 logger.info('Generate {} / {} user. Name: {}.'.format(i + 1, options['users'], username))
-                user = Profile(username=username, login=fake.first_name(), email=fake.email(),
-                               password=fake.password())
+                user = Profile(username=username, login=faker.first_name(), email=faker.email(),
+                               password=faker.password())
                 user.save()
                 i += 1
             except IntegrityError:

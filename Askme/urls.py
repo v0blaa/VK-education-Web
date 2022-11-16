@@ -21,6 +21,7 @@ from Askme_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.new_questions, name='new_questions'),
+    path('', views.hot_questions, name='hot_questions'),
     path('registration/', views.registration, name='registration'),
     path('auth/', views.auth, name='auth'),
     path('settings/', views.settings, name='settings'),

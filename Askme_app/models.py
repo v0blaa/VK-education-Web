@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -9,6 +10,22 @@ from django.dispatch import receiver
 
 from configuration import DELETED_USER
 
+tags_list = ["memes", "dogs", "cats", "love", "education", "new_year", "computers", "UIKit", "Swift"]
+members_list = ["kitty", "cool guy", "Roman111", "BMSTU rektor", "Evgeniy2001", "lol"]
+
+Popular_tags = [
+    {
+        'id': tag_id,
+        'title': random.choice(tags_list),
+    } for tag_id in range(4)
+]
+
+Best_members = [
+    {
+        'account_id': member_id,
+        'nickname': random.choice(members_list),
+    } for member_id in range(4)
+]
 
 def user_directory_path(instance, filename):
     return 'user{0}/{1}'.format(instance.user.id, filename)
@@ -24,37 +41,37 @@ class VoteManager(models.Manager):
             pass
         return False
 
-    def create_vote(self, user, instance, object_id, action='up-vote'):
+    def create_vote(self, user, obj, object_id, action='up-vote'):
         try:
             vote = self.filter(user=user).get(object_id=object_id)
             if vote.is_active:
                 if vote.is_positive and action == 'down-vote':
                     vote.is_active = False
-                    instance.total_votes -= 1
+                    obj.total_votes -= 1
                 elif not vote.is_positive and action == 'up-vote':
                     vote.is_active = False
-                    instance.total_votes += 1
+                    obj.total_votes += 1
             else:
                 if action == 'up-vote':
                     vote.is_active = True
                     vote.is_positive = True
-                    instance.total_votes += 1
+                    obj.total_votes += 1
                 elif action == 'down-vote':
                     vote.is_active = True
                     vote.is_positive = False
-                    instance.total_votes -= 1
+                    obj.total_votes -= 1
             vote.save(update_fields=['is_positive', 'is_active'])
         except Vote.DoesNotExist:
-            vote = self.create(user=user, obj=instance, object_id=instance.id)
+            vote = self.create(user=user, obj=obj, object_id=obj.id)
             if action == 'up-vote':
                 vote.is_positive = True
-                instance.total_votes += 1
+                obj.total_votes += 1
             else:
                 vote.is_positive = False
-                instance.total_votes -= 1
+                obj.total_votes -= 1
             vote.save()
 
-        instance.save(update_fields=['total_votes'])
+        obj.save(update_fields=['total_votes'])
         return vote
 
 
@@ -170,7 +187,7 @@ class Tag(models.Model):
 class Question(models.Model):
     objects = QuestionManager()
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, models.SET(DELETED_USER))
     title = models.CharField(max_length=200)
     created = models.DateTimeField(default=datetime.datetime.now)
     text = models.CharField(max_length=500)
@@ -185,7 +202,7 @@ class Question(models.Model):
 class Answer(models.Model):
     objects = AnswerManager()
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, models.SET(DELETED_USER))
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
     created = models.DateTimeField(default=datetime.datetime.now)
@@ -196,12 +213,13 @@ class Answer(models.Model):
 
 
 class Vote(models.Model):
+    objects = VoteManager()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
-    is_positive = models.BooleanField(default=None)
+    is_positive = models.BooleanField(default=True, null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object_id')
+    obj = GenericForeignKey('content_type', 'object_id')
 
 
 class Notification(models.Model):

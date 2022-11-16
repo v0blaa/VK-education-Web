@@ -2,6 +2,7 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from . import models
 from scripts.paginator import make_paginator
+from Askme_app.queries import queries
 
 QUESTIONS_PER_PAGE = 4
 
@@ -18,7 +19,7 @@ def auth(request):
 def settings(request):
     context = {'popular_tags': models.Popular_tags,
                'best_members': models.Best_members,
-               'account': models.Accounts[0]}
+               'account': models.Profile.objects[0]}
     return render(request, 'settings.html', context=context)
 
 def create_question(request):
@@ -27,7 +28,18 @@ def create_question(request):
     return render(request, 'create_question.html', context=context)
 
 def new_questions(request):
-    questions = make_paginator(models.Questions, QUESTIONS_PER_PAGE, request)
+    questions = queries.new_questions()
+    questions = make_paginator(questions, QUESTIONS_PER_PAGE, request)
+    context = {'questions': questions,
+               'popular_tags': models.Popular_tags,
+               'best_members': models.Best_members}
+    return render(request, 'new_questions.html', context=context)
+
+
+def hot_questions(request):
+    questions = queries.hot_questions(request)
+
+    questions = make_paginator(questions, QUESTIONS_PER_PAGE, request)
     context = {'questions': questions,
                'popular_tags': models.Popular_tags,
                'best_members': models.Best_members}
@@ -35,26 +47,20 @@ def new_questions(request):
 
 def question(request, question_id):
     try:
-        question_data = models.Questions[question_id]
+        question = queries.get_question_with_id(question_id)
     except:
         return HttpResponseNotFound("Question not found")
 
-    answers = []
-    for answer in models.Answers:
-        if question_id == answer['question_id']:
-            answers.append(answer)
+    answers = queries.answers_for_question(question_id)
     answers = make_paginator(answers, QUESTIONS_PER_PAGE, request)
-    context = {'question': question_data,
+    context = {'question': question,
                'answers': answers,
                'popular_tags': models.Popular_tags,
                'best_members': models.Best_members}
     return render(request, 'question.html', context=context)
 
 def tag(request, tag_name):
-    questions = []
-    for cur_question in models.Questions:
-        if tag_name in cur_question['tags']:
-            questions.append(cur_question)
+    questions = queries.questions_for_tag(tag_name)
     questions = make_paginator(questions, QUESTIONS_PER_PAGE, request)
     context = {'questions': questions,
                'tag': tag_name,

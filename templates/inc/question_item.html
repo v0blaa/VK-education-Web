@@ -17,17 +17,17 @@
             <div class="row question-extra-infromation">
                 <div class="col-2 rating-counter-block">
                     <button class="btn-sm btn-block btn-primary question-button">-</button>
-                    <span class="rating"> {{ question.rating }} </span>
+                    <span class="rating"> {{ question.total_votes }} </span>
                     <button class="btn-sm btn-block btn-primary question-button">+</button>
                 </div>
                 <div class="col-10">
                     <div class="row">
                         <div class="col-4">
-                            <a href="#">answer ({{ question.answers_count }})</a>
+                            <a href="#">answer ({{ question.total_answers }})</a>
                         </div>
                         <div class="col-8">
                             <span>Tags:</span>
-                            {% for tag in question.tags %}
+                            {% for tag in question.tags.all %}
                             <a href="{% url 'tag' tag_name=tag %}">{{ tag }}</a>
                             {% endfor %}
                         </div>
