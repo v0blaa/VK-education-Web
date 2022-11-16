@@ -53,13 +53,13 @@ class Command(BaseCommand):
         i = 0
         while i < ratio*10:
             user = get_random(Profile)
-            tags = get_random(Tag, randint(1,4))
-
-
+            tags = get_random(Tag, total_tags)
+            total_tags = len(Tag.objects.all())-1
+            tags_number = randint(0, 5)
             question = Question(user=user, title=faker.text(max_nb_chars=50),
                                 text=faker.text(max_nb_chars=450, ext_word_list=None))
             question.save()
-            for q in range(3):
+            for q in range(tags_number):
                 tag = tags[randint(0, total_tags)]
                 tag.total += 1
                 tag.save(update_fields=['total'])

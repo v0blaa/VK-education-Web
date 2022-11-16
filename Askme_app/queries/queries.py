@@ -29,3 +29,9 @@ def popular_tags():
 def best_members():
     users = Profile.objects.order_by('-activity').all()[:10]
     return users
+
+USER_ID=12000
+def base_context():
+    popular_tags_list = popular_tags()
+    best_members_list = best_members()
+    return {'popular_tags': popular_tags_list, 'best_members': best_members_list, 'account': Profile.objects.all()[USER_ID]}

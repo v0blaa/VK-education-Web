@@ -21,15 +21,16 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         logger = make_logger(options['debug'])
-        fake = Faker()
+        faker = Faker()
         logger.info('Generating {} tags...'.format(options['tags']))
-        total_tags = options['tags']
+        tags = options['tags']
         i = 0
-        while i < total_tags:
+        while i < tags:
             try:
-                tag_name = fake.word()[:15]
+                tag_name = faker.word()
                 logger.info('Generate {} / {} tag. Tag name: {}.'.format(i + 1, options['tags'], tag_name))
-                tag = Tag.objects.create_or_update_tag(tag=tag_name)
+                tag = Tag(text=tag_name)
+
                 tag.save()
                 i += 1
             except IntegrityError:
