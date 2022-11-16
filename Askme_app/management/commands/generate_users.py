@@ -7,9 +7,6 @@ from Askme_app.models import avatars
 from Askme_app.management.commands.logger import make_logger
 from Askme_app.models import Profile
 
-fake = Faker()
-
-fake.name()
 
 
 class Command(BaseCommand):
@@ -26,6 +23,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         logger = make_logger(options['debug'])
+
         faker = Faker()
         logger.info('Generating {} users...'.format(options['users']))
         total_users = options['users']

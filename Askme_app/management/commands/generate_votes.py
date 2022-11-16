@@ -8,9 +8,6 @@ from Askme_app.models import Question, Vote, Profile, Answer
 from Askme_app.management.commands.random_getter import get_random
 from random import randint
 
-fake = Faker()
-
-fake.name()
 
 class Command(BaseCommand):
     DEBUG_MODE = False

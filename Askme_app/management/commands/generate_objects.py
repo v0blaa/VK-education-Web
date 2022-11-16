@@ -9,9 +9,6 @@ from Askme_app.management.commands.logger import make_logger
 from Askme_app.management.commands.random_getter import get_random
 from Askme_app.models import Question, Answer, Tag, Vote
 
-fake = Faker()
-
-fake.name()
 
 DEFAULT_MAX_VOTES = 1000
 DEFAULT_MAX_OBJECTS = 20

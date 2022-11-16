@@ -9,10 +9,6 @@ from Askme_app.management.commands.logger import make_logger
 from Askme_app.management.commands.random_getter import get_random
 from Askme_app.models import Question, Tag, Vote, Profile
 
-fake = Faker()
-
-fake.name()
-
 
 class Command(BaseCommand):
     DEBUG_MODE = False

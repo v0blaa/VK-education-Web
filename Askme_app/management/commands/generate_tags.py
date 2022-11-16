@@ -5,9 +5,6 @@ from faker import Faker
 from Askme_app.management.commands.logger import make_logger
 from Askme_app.models import Tag
 
-fake = Faker()
-
-fake.name()
 
 
 class Command(BaseCommand):
@@ -32,7 +29,7 @@ class Command(BaseCommand):
             try:
                 tag_name = fake.word()[:15]
                 logger.info('Generate {} / {} tag. Tag name: {}.'.format(i + 1, options['tags'], tag_name))
-                tag = Tag(text=tag_name)
+                tag = Tag.objects.create_or_update_tag(tag=tag_name)
                 tag.save()
                 i += 1
             except IntegrityError:

@@ -2,11 +2,11 @@
 
  <div class="user-info-block">
     <div class="navbar-avatar">
-        <img src="{% static 'img/avatar-1.jpg' %}" alt="" />
+        <img src="{% static account.avatar %}" alt="" />
     </div>
 </div>
 <div class="mb-3">
-    <label class="name-label" >Nastya Ishenko</label>
+    <label class="name-label" >{{ account.username }}</label>
     <div class="navbar-account-links">
         <div class="user-info-block">
             <a class="navbar-account-link" href="{% url 'settings' %}" target="_blank">settings</a>

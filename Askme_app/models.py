@@ -179,7 +179,7 @@ def save_user_profile(sender, instance, **kwargs):
 class Tag(models.Model):
     objects = TagManager()
     text = models.CharField(max_length=15, unique=True)
-    total = models.IntegerField(default=1)
+    total = models.IntegerField(default=0)
 
     def __str__(self):
         return self.text
