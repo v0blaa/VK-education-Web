@@ -28,6 +28,19 @@
     background: green;
 }
 
+.name-label {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+.navbar-account-links {
+    display: flex
+}
+
+.navbar-account-link {
+    color: cornflowerblue;
+}
+
 .default-data-field {
     width: 300px;
 }
