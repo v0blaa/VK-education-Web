@@ -12,6 +12,7 @@ from configuration import DELETED_USER
 
 tags_list = ["memes", "dogs", "cats", "love", "education", "new_year", "computers", "UIKit", "Swift"]
 members_list = ["kitty", "cool guy", "Roman111", "BMSTU rektor", "Evgeniy2001", "lol"]
+avatars = ['img/avatar-1.jpg', 'img/avatar-2.jpg', 'img/avatar-3.jpg', 'img/no-avatar.jpg']
 
 Popular_tags = [
     {
@@ -123,8 +124,8 @@ class QuestionManager(models.Manager):
 
 
 class AnswerManager(models.Manager):
-    def create_answer(self, user, question, text, total_votes=0):
-        answer = self.create(user=user, question=question, text=text, total_votes=total_votes)
+    def create_answer(self, user, question, text, total_votes=0, is_correct=False):
+        answer = self.create(user=user, question=question, text=text, total_votes=total_votes, is_correct=is_correct)
         question = Question.objects.get(pk=question.id)
         question.total_answers += 1
         question.save(update_fields=['total_answers'])
@@ -158,7 +159,7 @@ class TagManager(models.Manager):
 class Profile(User):
     objects = ProfileManager()
     login = models.TextField(max_length=100, blank=False, null=True)
-    avatar = models.ImageField(upload_to=user_directory_path, default='static/img/no-avatar.jpg')
+    avatar = models.ImageField(upload_to=user_directory_path, default='img/no-avatar.jpg')
 
     def __str__(self):
         return self.username
@@ -187,7 +188,7 @@ class Tag(models.Model):
 class Question(models.Model):
     objects = QuestionManager()
 
-    user = models.ForeignKey(User, models.SET(DELETED_USER))
+    user = models.ForeignKey(Profile, models.SET(DELETED_USER))
     title = models.CharField(max_length=200)
     created = models.DateTimeField(default=datetime.datetime.now)
     text = models.CharField(max_length=500)
@@ -202,11 +203,12 @@ class Question(models.Model):
 class Answer(models.Model):
     objects = AnswerManager()
 
-    user = models.ForeignKey(User, models.SET(DELETED_USER))
+    user = models.ForeignKey(Profile, models.SET(DELETED_USER))
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
     created = models.DateTimeField(default=datetime.datetime.now)
     total_votes = models.IntegerField(default=0)
+    is_correct = models.BooleanField(default=False)
 
     def __str__(self):
         return self.question.title
@@ -214,7 +216,7 @@ class Answer(models.Model):
 
 class Vote(models.Model):
     objects = VoteManager()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     is_positive = models.BooleanField(default=True, null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -223,7 +225,7 @@ class Vote(models.Model):
 
 
 class Notification(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     TYPE_OF_NOTIFICATIONS_CHOICES = (
         ('ERR', 'Error'),
         ('NEW', "New event"),

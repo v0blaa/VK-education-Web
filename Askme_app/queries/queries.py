@@ -25,5 +25,4 @@ def tags_for_question(question):
     return question.tags.all()
 
 def get_question_with_id(question_id):
-
     return Question.objects.get(id=question_id)

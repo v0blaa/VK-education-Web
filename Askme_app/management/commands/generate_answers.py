@@ -1,4 +1,5 @@
 from random import randint
+import random
 
 from django.contrib.auth.models import User
 from django.core.management import BaseCommand
@@ -31,18 +32,16 @@ class Command(BaseCommand):
         faker = Faker()
         logger.info('Generating {} answers...'.format(options['answers']))
         start_time = datetime.now().timestamp()
-        total_questions = options['answers']
+        total_answers = options['answers']
         i = 0
-        while i < total_questions:
+        while i < total_answers:
             user = get_random(Profile)
             question = get_random(Question)
             logger.info('Generate {} / {} answer.'.format(i + 1, options['answers']))
-            question.total_answers += 1
-            question.save(update_fields=['total_answers'])
-            # total_votes = randint(0, MAX_VOTES_PER_ONE_ANSWER)
 
             answer = Answer.objects.create_answer(user=user, question=question,
-                                                  text=faker.text(max_nb_chars=450, ext_word_list=None))
+                                                  text=faker.text(max_nb_chars=450, ext_word_list=None),
+                                                  is_correct=bool(random.getrandbits(1)))
             answer.save()
             i += 1
 

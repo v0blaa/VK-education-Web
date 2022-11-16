@@ -1,7 +1,9 @@
+import random
+
 from django.core.management import BaseCommand
 from django.db import IntegrityError
 from faker import Faker
-
+from Askme_app.models import avatars
 from Askme_app.management.commands.logger import make_logger
 from Askme_app.models import Profile
 
@@ -33,7 +35,7 @@ class Command(BaseCommand):
                 username = faker.user_name()
                 logger.info('Generate {} / {} user. Name: {}.'.format(i + 1, options['users'], username))
                 user = Profile(username=username, login=faker.first_name(), email=faker.email(),
-                               password=faker.password())
+                               password=faker.password(), avatar=random.choice(avatars))
                 user.save()
                 i += 1
             except IntegrityError:
