@@ -1,0 +1,41 @@
+{% extends 'inc/base.html' %}
+
+{%  load static %}
+
+{% block content %}
+<h1>Settings</h1>
+<p>Sorry, this email address already exist</p>
+<form action="new_questions.html" method=post oninput='second.setCustomValidity(first.value != second.value ? "Passwords do not match." : "")'>
+    <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="title-text-input">Login</label>
+        <div class="col-10">
+            <input id="title-text-input" type="text" class="form-control default-data-field" placeholder="Enter your login here" value="{{ account.login }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="email-text-input">Email</label>
+        <div class="col-10">
+            <input id="email-text-input" type="email" class="form-control default-data-field" placeholder="Enter your email here" required name="email" value="{{ account.email }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="nickname-text-input">Nickname</label>
+        <div class="col-10">
+            <input id="nickname-text-input" type="text" class="form-control default-data-field" required name="nickName" placeholder="Enter your nickname here" value="{{ account.nickname }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="mb-3 row">
+            <label for="form-file" class="col-2 col-form-label">Upload avatar</label>
+            <div class="col-10 settings-preview-avatar">
+                <img src="{% static account.avatar_path %}">
+            </div>
+        </div>
+        <div class="col-10">
+            <input class="form-control default-data-field settings-avatar-file-selector" type="file" id="form-file">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success save-button">Save</button>
+</form>
+
+{% endblock %}

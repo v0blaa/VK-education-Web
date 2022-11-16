@@ -1,0 +1,243 @@
+.container {
+    padding: 70px 0px;
+}
+
+.container > div {
+    margin-top: 10px;
+}
+
+.container > p {
+    color: red;
+}
+
+.container h1 {
+    display: inline-block;
+}
+
+.container > a {
+    font-size: 22px;
+    margin-left: 80px;
+    display: inline-block;
+}
+
+.confirm-ask-button {
+    margin-left: 110px;
+    width: 90px;
+    height: 45px;
+    color: white;
+    background: green;
+}
+
+.default-data-field {
+    width: 300px;
+}
+
+.form-container {
+    padding-right: 60px;
+}
+
+.question-text {
+    font-size: 18px;
+}
+
+.form-field {
+    display: flex;
+    align-items: center;
+}
+
+.answer-field {
+    display: flex;
+    align-items: center;
+}
+
+.form-label {
+    margin-right: 0.5em;
+    width: 100%;
+    max-width: 100px;
+}
+
+.form-input {
+    flex-grow: 1;
+}
+
+.settings-preview-avatar > img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.navbar-search {
+    margin-left: 40px;
+    width: 400px;
+}
+
+.popular-tags {
+    font-size: 18px;
+    max-width: 300px;
+}
+
+.usual-tag {
+    font-size: 18px;
+    text-decoration: none;
+    color: #1a1e21;
+}
+
+.red-tag {
+    font-size: 20px;
+    color: red;
+    text-decoration: none;
+}
+
+.green-tag {
+    font-size: 18px;
+    color: green;
+    text-decoration: none;
+}
+
+.best-member-link > a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.hot-questions-link {
+    margin-left: 30px;
+    font-size: 22px;
+}
+
+.no-user-log-block > a {
+    margin-left: 10px;
+}
+
+.navbar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navbar-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.user-info-block {
+    margin-left: 10px;
+}
+
+.ask-button {
+    margin-left: 20px;
+    width: 80px;
+    color: white;
+    background: green;
+}
+
+.answer-button {
+    width: 80px;
+    color: white;
+    background: green;
+}
+
+.question-focused {
+    margin-bottom: 16px;
+    padding: 16px;
+
+}
+
+.log-in-button {
+    margin-left: 108px;
+}
+
+
+.name-label {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+.navbar-account-links {
+    display: flex
+}
+
+.navbar-account-link {
+    color: cornflowerblue;
+}
+
+.error-label {
+    display: block;
+    margin-bottom: 15px;
+    color: red;
+}
+
+.create-account-link {
+    margin-left: 108px;
+}
+
+.question-focused .avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.one-line-label {
+    display: inline;
+    margin-right: 1em;
+    white-space:nowrap;
+}
+
+.question-answer {
+    margin-bottom: 16px;
+    border: 2px solid gray;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.avatar {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.question-title {
+    font-size: 24px;
+}
+
+.question-button {
+    height: 32px;
+    width: 32px;
+}
+
+.register-button {
+    margin-left: 150px;
+}
+
+.question-extra-infromation {
+    margin-top: 8px;
+}
+
+.rating-counter-block {
+    text-align: center;
+}
+
+.rating {
+    padding: 0px 4px;
+    font-size: 16px;
+}
+
+.settings-avatar-file-selector {
+    margin-left: 145px;
+}
+
+.save-button {
+    margin-left: 145px;
+}

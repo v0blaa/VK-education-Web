@@ -1,0 +1,22 @@
+{% extends 'inc/base.html' %}
+
+{%  load static %}
+
+{% block content %}
+<h1>Create Question</h1>
+<form>
+    <div class="mb-3 form-field">
+        <label class="form-label" for="typeText">Title</label>
+        <input id="title-text-input" type="text" class="form-control form-input">
+    </div>
+    <div class="mb-3 form-field">
+        <label class="form-label" for="textAreaExample">Message</label>
+        <textarea class="form-control form-field" id="textAreaExample" rows="10"></textarea>
+    </div>
+    <div class="mb-3 form-field">
+        <label class="form-label" for="typeText">Tags</label>
+        <input id="tags-text-input" type="text" class="form-control form-field">
+    </div>
+    <a href="{% url 'new_questions' %}" target="_blank" class="btn btn-outline-success confirm-ask-button" type="button">ASK!</a>
+</form>
+{% endblock %}
