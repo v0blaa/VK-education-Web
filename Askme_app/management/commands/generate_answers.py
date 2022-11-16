@@ -40,5 +40,7 @@ class Command(BaseCommand):
                                                   is_correct=bool(random.getrandbits(1)))
             answer.save()
             i += 1
+            user.activity +=1
+            user.save(update_fields=['activity'])
 
         logger.info('Operation executed in {} seconds'.format(datetime.now().timestamp() - start_time))

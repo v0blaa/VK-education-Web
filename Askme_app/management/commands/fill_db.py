@@ -8,7 +8,7 @@ from Askme_app.models import Question, Vote, Answer, Profile, Tag
 from Askme_app.management.commands.random_getter import get_random
 from django.utils.datetime_safe import datetime
 from Askme_app.models import avatars
-from Askme_app.management.commands import generate_questions, generate_answers, generate_tags, generate_votes, generate_users
+# from Askme_app.management.commands import generate_questions, generate_answers, generate_tags, generate_votes, generate_users
 
 
 class Command(BaseCommand):
@@ -94,25 +94,5 @@ class Command(BaseCommand):
                 i += 1
             except IntegrityError:
                 logger.warning('Vote already exists.')
-
-        users = generate_users.Command()
-        opts = {ratio}
-        users.handle(opts, debug=options['debug'])
-
-        tags = generate_tags.Command()
-        opts = {ratio}
-        tags.handle(opts)
-
-        questions = generate_users.Command()
-        opts = {ratio*10}
-        questions.handle(opts)
-
-        answers = generate_answers.Command()
-        opts = {ratio*100}
-        answers.handle(opts)
-
-        votes = generate_votes.Command()
-        opts = {ratio}
-        votes.handle(opts*20)
 
         logger.info('Operation executed in {} seconds'.format(datetime.now().timestamp() - start_time))

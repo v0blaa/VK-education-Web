@@ -21,14 +21,14 @@
     <div class="mb-3 row">
         <label class="col-2 col-form-label" for="nickname-text-input">Nickname</label>
         <div class="col-10">
-            <input id="nickname-text-input" type="text" class="form-control default-data-field" required name="nickName" placeholder="Enter your nickname here" value="{{ account.nickname }}">
+            <input id="nickname-text-input" type="text" class="form-control default-data-field" required name="nickName" placeholder="Enter your nickname here" value="{{ account.username }}">
         </div>
     </div>
     <div class="mb-3 row">
         <div class="mb-3 row">
             <label for="form-file" class="col-2 col-form-label">Upload avatar</label>
             <div class="col-10 settings-preview-avatar">
-                <img src="{% static account.avatar_path %}">
+                <img src="{% static account.avatar %}">
             </div>
         </div>
         <div class="col-10">

@@ -40,6 +40,8 @@ class Command(BaseCommand):
             question = Question(user=user, title=faker.text(max_nb_chars=50),
                                 text=faker.text(max_nb_chars=450, ext_word_list=None))
             question.save()
+            user.activity +=1
+            user.save(update_fields=['activity'])
             for q in range(3):
                 tag = tags[randint(0, total_tags)]
                 tag.total += 1

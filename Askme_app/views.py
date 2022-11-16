@@ -23,8 +23,9 @@ def auth(request):
 
 def settings(request):
     popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
     context = {'popular_tags': popular_tags,
-               'best_members': models.Best_members,
+               'best_members': best_members,
                'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'settings.html', context=context)
 

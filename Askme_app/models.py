@@ -160,6 +160,7 @@ class Profile(User):
     objects = ProfileManager()
     login = models.TextField(max_length=100, blank=False, null=True)
     avatar = models.ImageField(upload_to=user_directory_path, default='img/no-avatar.jpg')
+    activity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username

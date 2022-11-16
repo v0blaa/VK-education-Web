@@ -25,3 +25,7 @@ def get_question_with_id(question_id):
 def popular_tags():
     tags = Tag.objects.order_by('-total').all()[:6]
     return tags
+
+def best_members():
+    users = Profile.objects.order_by('-activity').all()[:10]
+    return users
