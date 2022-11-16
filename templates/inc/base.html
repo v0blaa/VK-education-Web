@@ -1,0 +1,50 @@
+<!doctype html>
+
+{%  load static %}
+
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in</title>
+
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+{% include 'inc/navbar.html' %}
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-8">
+
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-4">
+            <h1>Popular Tags</h1>
+            <div class="popular-tags">
+                {% for tag in popular_tags %}
+                    {% include 'inc/tag.html' %}
+                {% endfor %}
+            </div>
+            <h1>Best members</h1>
+            <div class="best-member-link">
+                {% for member in best_members %}
+                    {% include 'inc/member.html' %}
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'inc/base.html' %}
+
+{%  load static %}
+
+{% block content %}
+<h1>Registration</h1>
+<label class="error-label" for="typeText">Sorry, this email address is already registered :(</label>
+<form action="new_questions.html" method=post oninput='second.setCustomValidity(first.value != second.value ? "Passwords do not match." : "")'>
+    <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="title-text-input">Login</label>
+        <div class="col-10">
+            <input id="title-text-input" type="text" class="form-control default-data-field" placeholder="Enter your login here">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="email-text-input">Email</label>
+        <div class="col-10">
+            <input id="email-text-input" type="email" class="form-control default-data-field" placeholder="Enter your email here" required name="email">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-2 col-form-label" for="nickname-text-input">Nickname</label>
+        <div class="col-10">
+            <input id="nickname-text-input" type="text" class="form-control default-data-field" required name="nickName" placeholder="Enter your nickname here">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="exampleInputPassword1" class="col-2 col-form-label">Password</label>
+        <div class="col-10">
+            <input type="password" class="form-control default-data-field" id="exampleInputPassword1" required name="first" placeholder="Enter your password here">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="exampleInputPassword2" class="col-2 col-form-label">Repeat Password</label>
+        <div class="col-10">
+            <input type="password" class="form-control default-data-field" id="exampleInputPassword2" required name="second" placeholder="Confirm your password">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="form-file" class="col-2 col-form-label">Avatar</label>
+        <div class="col-10">
+            <input class="form-control default-data-field" type="file" id="form-file">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success register-button">Register</button>
+</form>
+
+{% endblock %}

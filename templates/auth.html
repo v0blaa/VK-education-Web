@@ -1,0 +1,24 @@
+{% extends 'inc/base.html' %}
+
+{%  load static %}
+
+{% block content %}
+<h1>Log in</h1>
+
+<label class="error-label" for="typeText">Sorry, wrong password :(</label>
+    <form>
+        <div class="mb-3 form-field">
+            <label class="form-label" for="title-text-input">Login</label>
+            <input id="title-text-input" type="text" class="form-control default-data-field form-field" placeholder="Enter your login here" required name="login">
+        </div>
+        <div class="mb-3 form-field">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control default-data-field form-field" id="exampleInputPassword1" placeholder="Enter your password here" required name="password">
+        </div>
+        <button type="submit" class="btn btn-success log-in-button">Log in</button>
+        <div class="create-account-link">
+            <a href="{% url 'registration'%}">create new account</a>
+        </div>
+    </form>
+
+{% endblock %}
