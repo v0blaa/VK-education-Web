@@ -8,26 +8,46 @@ QUESTIONS_PER_PAGE = 4
 USER_ID=12000
 
 def registration(request):
-    context = queries.base_context()
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'registration.html', context=context)
 
 def auth(request):
-    context = queries.base_context()
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'auth.html', context=context)
 
 def settings(request):
-    context = queries.base_context()
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'settings.html', context=context)
 
 def create_question(request):
-    context = queries.base_context()
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'create_question.html', context=context)
 
 def new_questions(request):
     questions = queries.new_questions()
     questions = make_paginator(questions, QUESTIONS_PER_PAGE, request)
-    context = queries.base_context()
-    context['questions'] = questions
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'questions': questions,
+               'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'new_questions.html', context=context)
 
 
@@ -35,8 +55,12 @@ def hot_questions(request):
     questions = queries.hot_questions()
 
     questions = make_paginator(questions, QUESTIONS_PER_PAGE, request)
-    context = queries.base_context()
-    context['questions'] = questions
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'questions': questions,
+               'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'hot_questions.html', context=context)
 
 def question(request, question_id):
@@ -47,9 +71,13 @@ def question(request, question_id):
 
     answers = queries.answers_for_question(question_id)
     answers = make_paginator(answers, QUESTIONS_PER_PAGE, request)
-    context = queries.base_context()
-    context['question'] = question
-    context['answers'] = answers
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'question': question,
+               'answers': answers,
+               'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'question.html', context=context)
 
 def tag(request, tag_name):
@@ -58,7 +86,11 @@ def tag(request, tag_name):
     except:
         return HttpResponseNotFound("Tag not found")
     questions = make_paginator(questions, QUESTIONS_PER_PAGE, request)
-    context = queries.base_context()
-    context['questions'] = questions
-    context['tag'] = tag_name
+    popular_tags = queries.popular_tags()
+    best_members = queries.best_members()
+    context = {'questions': questions,
+               'tag': tag_name,
+               'popular_tags': popular_tags,
+               'best_members': best_members,
+               'account': models.Profile.objects.all()[USER_ID]}
     return render(request, 'tag.html', context=context)

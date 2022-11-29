@@ -10,23 +10,7 @@ from django.dispatch import receiver
 
 from configuration import DELETED_USER
 
-tags_list = ["memes", "dogs", "cats", "love", "education", "new_year", "computers", "UIKit", "Swift"]
-members_list = ["kitty", "cool guy", "Roman111", "BMSTU rektor", "Evgeniy2001", "lol"]
 avatars = ['img/avatar-1.jpg', 'img/avatar-2.jpg', 'img/avatar-3.jpg', 'img/no-avatar.jpg']
-
-Popular_tags = [
-    {
-        'id': tag_id,
-        'title': random.choice(tags_list),
-    } for tag_id in range(4)
-]
-
-Best_members = [
-    {
-        'account_id': member_id,
-        'nickname': random.choice(members_list),
-    } for member_id in range(4)
-]
 
 def user_directory_path(instance, filename):
     return 'user{0}/{1}'.format(instance.user.id, filename)
@@ -151,7 +135,7 @@ class TagManager(models.Manager):
             tag.total += 1
             tag.save(update_fields=['total'])
         except Tag.DoesNotExist:
-            tag = self.create(text=tag, total=1)
+            tag = self.create(text=tag, total=0)
             tag.save()
         return tag
 

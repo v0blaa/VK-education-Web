@@ -29,6 +29,8 @@ class Command(BaseCommand):
 
         ratio = options['ratio']
         faker = Faker()
+
+        # Users
         i = 0
         while i < ratio:
             try:
@@ -41,32 +43,40 @@ class Command(BaseCommand):
                 logger.warning('User already exists.')
 
 
+        # Tags
         i = 0
         while i < ratio:
-            tag_name = faker.word()
-            tag = Tag.objects.create_or_update_tag(text=tag_name)
+            tag_name = faker.word()[:15]
+            tag = Tag.objects.create_or_update_tag(tag=tag_name)
             tag.save()
             i += 1
 
 
-
+        # Questions
         i = 0
         while i < ratio*10:
             user = get_random(Profile)
-            tags = get_random(Tag, total_tags)
-            total_tags = len(Tag.objects.all())-1
-            tags_number = randint(0, 5)
+            tags = get_random(Tag, randint(1, 4))
+
             question = Question(user=user, title=faker.text(max_nb_chars=50),
                                 text=faker.text(max_nb_chars=450, ext_word_list=None))
             question.save()
-            for q in range(tags_number):
-                tag = tags[randint(0, total_tags)]
-                tag.total += 1
-                tag.save(update_fields=['total'])
-                question.tags.add(tag)
+            user.activity +=1
+            user.save(update_fields=['activity'])
+            if type(tags) == list:
+                for tag in tags:
+                    tag.total += 1
+                    tag.save(update_fields=['total'])
+                    question.tags.add(tag)
+                    i += 1
+            else:
+                tags.total += 1
+                tags.save(update_fields=['total'])
+                question.tags.add(tags)
                 i += 1
 
 
+        # Answers
         i = 0
         while i < ratio*100:
             user = get_random(Profile)
@@ -76,9 +86,12 @@ class Command(BaseCommand):
                                                   is_correct=bool(random.getrandbits(1)))
             answer.save()
             i += 1
+            user.activity +=1
+            user.save(update_fields=['activity'])
 
 
 
+        # Votes
         objects_list = ['questions', 'answers']
         i = 0
         while i < ratio*200:

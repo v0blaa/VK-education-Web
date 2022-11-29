@@ -3,8 +3,6 @@
 import os
 import sys
 
-import scripts.db_fill
-
 
 def main():
     """Run administrative tasks."""

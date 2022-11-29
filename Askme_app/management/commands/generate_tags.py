@@ -29,7 +29,7 @@ class Command(BaseCommand):
             try:
                 tag_name = faker.word()
                 logger.info('Generate {} / {} tag. Tag name: {}.'.format(i + 1, options['tags'], tag_name))
-                tag = Tag(text=tag_name)
+                tag = Tag.objects.create_or_update_tag(tag=tag_name)
 
                 tag.save()
                 i += 1
