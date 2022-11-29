@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
             logger.info('Generate {} / {} question.'.format(i + 1, options['questions']))
 
-            question = Question(user=user, title=faker.text(max_nb_chars=50),
+            question = Question.objects.create(user=user, title=faker.text(max_nb_chars=50),
                                 text=faker.text(max_nb_chars=450, ext_word_list=None))
             question.save()
             user.activity +=1
